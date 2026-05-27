@@ -1,0 +1,37 @@
+# Runtime config used by swarm_ssh_controller.py
+
+defaults:
+  user: ros2
+  ssh_port: 22
+  ssh_key: ~/.ssh/id_rsa
+  workdir: /home/amov/uav_ws
+  ros_setup: /home/amov/uav_ws/install/setup.bash
+  log_dir: /home/amov/dds_logs
+  env:
+    RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+
+publisher:
+  package: dds_study
+  executable: publisher
+  params:
+    history: 10
+    payload_bytes: 0
+    port: 2077
+    publisher_period_ms: 500
+    publisher_topic: /rel
+    packets_to_send: 100
+    file_name: /home/amov/uav_ws/publisher_log.csv
+
+hosts:
+  - name: amov
+    host: 172.20.10.2
+    user: amov
+    publisher_params:
+      ip_addr: 172.20.10.2
+
+  # robot02 目前网络/SSH未通，配置预留，后续调通后可直接用
+  - name: robot02
+    host: 192.168.2.3
+    user: ubuntu
+    publisher_params:
+      ip_addr: 192.168.2.3

@@ -1,0 +1,41 @@
+# Copy this file to swarm_hosts.yaml and edit values.
+# Each host can override global defaults.
+
+defaults:
+  user: root
+  ssh_port: 22
+  ssh_key: ~/.ssh/id_rsa
+  workdir: /home/ubuntu/TestbedROS2Swarm-mainGH/dds_ros2
+  ros_setup: /home/ubuntu/TestbedROS2Swarm-mainGH/install/setup.bash
+  log_dir: /home/ubuntu/dds_logs
+  env:
+    RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+
+publisher:
+  package: dds_study
+  executable: publisher
+  params:
+    history: 100
+    payload_bytes: 750
+    port: 2077
+    publisher_period_ms: 1000
+    use_default_reliability: true
+    use_default_volatibility: true
+    publisher_topic: /rel
+    packets_to_send: 1800
+
+hosts:
+  - name: robot01
+    host: 172.20.10.2
+    # Optional per-host overrides:
+    # user: ubuntu
+    # ssh_key: ~/.ssh/id_ed25519
+    # workdir: /home/ubuntu/TestbedROS2Swarm-mainGH/dds_ros2
+    # ros_setup: /home/ubuntu/TestbedROS2Swarm-mainGH/install/setup.bash
+    publisher_params:
+      ip_addr: 172.20.10.2
+
+  - name: robot02
+    host: 192.168.2.3
+    publisher_params:
+      ip_addr: 192.168.2.3
