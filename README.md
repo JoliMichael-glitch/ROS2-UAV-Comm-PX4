@@ -1,5 +1,7 @@
 # 🚁 ROS2-UAV-Comm-PX4
 
+[中文版 (Chinese Version)](README_zh.md) | [English](README.md)
+
 > Real-hardware ROS 2 communication benchmark framework for distributed UAV robotic systems.
 
 ROS 2 Foxy/Humble-based distributed UAV communication testbed using PX4 and NVIDIA Jetson platforms. The project focuses on real-world communication performance evaluation, including multi-node coordination, QoS-aware networking, LOS/NLOS stress testing, payload-based load testing, relay communication, and PX4-MAVROS closed-loop validation.
